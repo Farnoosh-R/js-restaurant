@@ -4,10 +4,434 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
     <title>js-restaurant</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <header class="absolute top-0 left-0 z-50 w-full">
+      <nav class="mx-auto flex h-24 max-w-7xl items-right justify-between px-6">
+        <!-- Menu -->
+
+        <div class="hidden items-center gap-8 md:flex">
+          <!-- Logo -->
+          <a href="/" class="flex items-center">
+            <!-- <div class="text-3xl font-bold italic text-[var(--color-light)]">Flavoria</div> -->
+            <img
+              src="/src/assets/images/logo/logo.png"
+              class="w-25"
+              alt="logo"
+            />
+          </a>
+
+          <a href="/" class="relative text-sm font-medium text-orange-400">
+            صفحه اصلی
+            <span
+              class="absolute -bottom-3 left-1/2 h-0.5 w-5 -translate-x-1/2 bg-orange-400"
+            ></span>
+          </a>
+
+          <a
+            href="#menu"
+            class="text-sm font-medium text-[var(--color-light)] transition hover:text-orange-400"
+          >
+            منو
+          </a>
+
+          <a
+            href="#about"
+            class="text-sm font-medium text-[var(--color-light)] transition hover:text-orange-400"
+          >
+            درباره ما
+          </a>
+
+          <a
+            href="#gallery"
+            class="text-sm font-medium text-[var(--color-light)] transition hover:text-orange-400"
+          >
+            تماس با ما
+          </a>
+
+          <a
+            href="#contact"
+            class="text-sm font-medium text-[var(--color-light)] transition hover:text-orange-400"
+          >
+            گالری
+          </a>
+          <!-- Button -->
+          <a
+            href="#reservation"
+            class="ml-4 rounded-full bg-orange-400 px-7 py-3 text-xs font-bold text-[var(--color-light)] shadow-lg transition hover:bg-orange-500"
+          >
+           رزرو میز
+          </a>
+        </div>
+
+        <!-- Mobile button -->
+        <button
+          id="mobile-menu-button"
+          class="text-2xl text-[var(--color-light)] md:hidden"
+        >
+          ☰
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section
+        id="hero"
+        class="min-h-screen bg-cover bg-center"
+        style="background-image: url(/src/assets/images/banners/hero.webp)"
+      >
+        <div class="app-container">
+          <div class="grid grid-cols-1 lg:grid-cols-3 pt-50 place-items-center">
+            <div class="flex flex-col gap-3 col-span-1">
+              <img
+                src="/src/assets/images/banners/goodFood.png"
+                class="w-50 -mb-10"
+                alt="logo"
+              />
+              <div class="flex">
+                <h1 class="text-orange-400">MOOD</h1>
+                <h1 class="text-[var(--color-light)]">GOOD</h1>
+              </div>
+              <div id="fork" class="flex gap-2 items-center">
+                <div class="w-[50px] h-[1px] bg-orange-400/50"></div>
+                <i class="fa-solid fa-utensils text-orange-400"></i>
+                <div class="w-[50px] h-[1px] bg-orange-400/50"></div>
+              </div>
+              <div class="text-lg leading-8">
+                با هر لقمه، طعمی تازه و تجربه‌ای متفاوت را کشف کنید. اینجا جایی
+                است که عطر غذاهای خوشمزه با لحظاتی به‌یادماندنی همراه می‌شود.
+              </div>
+              <div class="flex">
+                <a
+                  href="#reservation"
+                  class="ml-4 rounded-full border border-orange-400 px-7 py-3 text-xs font-bold text-orange-400 shadow-lg transition hover:bg-orange-400 hover:text-[var(--color-light)]"
+                >
+                  مشاهده منو
+                </a>
+                <a
+                  href="#reservation"
+                  class="ml-4 rounded-full bg-orange-400 px-7 py-3 text-xs font-bold text-[var(--color-light)] shadow-lg transition hover:bg-orange-500"
+                >
+                  گالری
+                </a>
+              </div>
+              <div class="flex gap-5 mt-10 justify-center items-center">
+                <div class="flex flex-col gap-2 justify-center items-center">
+                  <i class="fa-solid fa-star text-orange-400/50"></i>
+                  <div>کیفیت بالا</div>
+                  <div>خلق طعمی بی‌نظیر</div>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-2 border-r border-l px-3 border-orange-400/20">
+                  <i class="fa-solid fa-utensils text-orange-400/50"></i>
+                  <div>آشپزی حرفه‌ای</div>
+                  <div>دستورپخت‌های اختصاصی</div>
+                </div>
+                <div class="flex flex-col justify-center items-center gap-2">
+                  <i class="fa-solid fa-leaf text-orange-400/50"></i>
+                  <div>طراوت و تازگی</div>
+                  <div>بهترین مواد اولیه</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-span-2">1</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- پیشنهاد سرآشپز -->
+      <section id="chef-suggestions" class="py-20">
+        <div class="app-container">
+          <div class="flex flex-col gap-2 items-center mb-10">
+            <div class="text-orange-400/50 tracking-[10px]">Chef's Special</div>
+            <h2 class="text-center text-3xl font-bold">پیشنهاد سرآشپز</h2>
+            <div id="fork" class="flex gap-2 items-center">
+              <div class="w-[50px] h-[1px] bg-orange-400/50"></div>
+              <i class="fa-solid fa-utensils text-orange-400"></i>
+              <div class="w-[50px] h-[1px] bg-orange-400/50"></div>
+            </div>
+          </div>
+          <div id="chef-foods" class="grid grid-cols-1 gap-8 md:grid-cols-4">
+            <!-- غذاها با جاوااسکریپت اینجا نمایش داده می‌شوند -->
+          </div>
+        </div>
+      </section>
+
+      <!-- درباره ما -->
+      <section id="about mb-" class="py-20">
+        <div class="app-container">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="flex gap-2">
+              <div class="flex flex-col gap-2">
+                <div
+                  class="img-holder h-45 overflow-hidden rounded-4xl border border-orange-400/50"
+                >
+                  <img src="/src/assets/images/banners/chef1.png" alt="" />
+                </div>
+                <div
+                  class="img-holder h-50 overflow-hidden rounded-4xl border border-orange-400/50"
+                >
+                  <img src="/src/assets/images/banners/chef2.png" alt="" />
+                </div>
+              </div>
+              <div>
+                <div
+                  class="img-holder overflow-hidden rounded-4xl border border-orange-400/50"
+                >
+                  <img
+                    src="/src/assets/images/banners/event.png"
+                    class="w-full object-cover"
+                    alt=""
+                  />
+                </div>
+                <img
+                  src="/src/assets/images/banners/about.png"
+                  class="w-50 object-cover -mt-6"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="flex flex-col items-start gap-2">
+              <div class="flex flex-col items-center gap-2">
+                <div class="text-orange-400/50 tracking-[10px]">Our Story</div>
+                <h2 class="text-center text-3xl font-bold">داستان ما</h2>
+              </div>
+              <div class="leading-7">
+                همه‌چیز از عشق به طعم‌های خوب و لحظه‌های به‌یادماندنی شروع شد.
+                ما در Flavoria باور داریم که غذا فقط برای سیر شدن نیست؛ بلکه
+                راهی برای ساختن خاطراتی خوشمزه است. با انتخاب مواد اولیه تازه و
+                باکیفیت، هر روز تلاش می‌کنیم تجربه‌ای متفاوت خلق کنیم. از اولین
+                عطر غذا تا آخرین لقمه، کیفیت و رضایت شما اولویت ماست.
+              </div>
+              <div
+                class="flex gap-10 justify-center items-center mx-auto mt-10"
+              >
+                <div class="flex flex-col gap-3">
+                  <h3 class="text-orange-400">10K +</h3>
+                  <div>مشتری راضی</div>
+                </div>
+                <div
+                  class="flex flex-col gap-3 border-r border-l border-orange-400/20 px-4"
+                >
+                  <h3 class="text-orange-400">12 +</h3>
+                  <div>سال تجربه</div>
+                </div>
+                <div class="flex flex-col gap-3">
+                  <h3 class="text-orange-400">50 +</h3>
+                  <div>رسپی اختصاصی</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- اطلاعات ما -->
+      <section id="out-info py-20">
+        <div class="app-container">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-4 gap-5 rounded-4xl bg-zinc-800 border border-orange-400/20 py-10 px-5"
+          >
+            <div class="flex gap-2">
+              <div>
+                <div
+                  class="flex justify-center items-center bg-zinc-900 p-2 rounded-full w-[60px] h-[60px]"
+                >
+                  <i
+                    class="fa-solid fa-motorcycle text-orange-400 text-3xl"
+                  ></i>
+                </div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="font-bold text">تحویل سریع</div>
+                <div>غذای گرم</div>
+                <div>از سفارش خود لذت ببرید</div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <div>
+                <div
+                  class="flex justify-center items-center bg-zinc-900 p-2 rounded-full w-[60px] h-[60px]"
+                >
+                  <i class="fa-solid fa-phone text-orange-400 text-3xl"></i>
+                </div>
+              </div>
+              <div class="flex flex-col gap-1">
+                <div class="font-bold text">تماس بگیرید</div>
+                <div>44523658 21+</div>
+                <div>55698569 21+</div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <div>
+                <div
+                  class="flex justify-center items-center bg-zinc-900 p-2 rounded-full w-[60px] h-[60px]"
+                >
+                  <i class="fa-regular fa-clock text-orange-400 text-3xl"></i>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="font-bold text">ساعات کاری</div>
+                <div>شنبه تا جمعه</div>
+                <div>AM 10:00 - 11:00 PM</div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <div>
+                <div
+                  class="flex justify-center items-center bg-zinc-900 p-2 rounded-full w-[60px] h-[60px]"
+                >
+                  <i
+                    class="fa-solid fa-map-location-dot text-orange-400 text-3xl"
+                  ></i>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="font-bold text">آدرس ما</div>
+                <div>شهر غذاها</div>
+                <div>حیابان خوشمزه ها، کوچه فلیوریا</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ویژگی‌ها -->
+      <section id="features"></section>
+
+      <!-- CTA -->
+      <section id="cta"></section>
+    </main>
+
+    <!-- فوتر -->
+
+    <footer dir="rtl" class="border-t border-orange-400/20 pt-16 pb-6 mt-20">
+      <div class="app-container">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <!-- معرفی برند -->
+          <div>
+            <img
+              src="/src/assets/images/logo/logo.png"
+              alt="Flavoria"
+              class="mb-5 w-32"
+            />
+
+            <p class="mb-6 text-sm leading-8 text-zinc-400">
+              طعم‌های بی‌نظیر، لحظه‌های به‌یادماندنی. در Flavoria لذت غذا خوردن
+              را متفاوت تجربه کنید.
+            </p>
+
+            <div class="flex gap-3">
+              <a
+                href="#"
+                class="flex h-9 w-9 items-center justify-center rounded-full border border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white"
+              >
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="flex h-9 w-9 items-center justify-center rounded-full border border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="flex h-9 w-9 items-center justify-center rounded-full border border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white"
+              >
+                <i class="fa-brands fa-telegram"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- لینک‌های سریع -->
+          <div>
+            <h5 class="mb-6 font-bold">دسترسی سریع</h5>
+
+            <ul class="flex flex-col gap-4 text-sm text-zinc-400">
+              <li><a href="/" class="hover:text-orange-400">صفحه اصلی</a></li>
+              <li>
+                <a href="#menu" class="hover:text-orange-400">منوی غذاها</a>
+              </li>
+              <li>
+                <a href="#Chef-Special" class="hover:text-orange-400"
+                  >پیشنهاد سرآشپز</a
+                >
+              </li>
+              <li>
+                <a href="#about" class="hover:text-orange-400">درباره ما</a>
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-orange-400">تماس با ما</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- اطلاعات تماس -->
+          <div>
+            <h5 class="mb-6 font-bold">ارتباط با ما</h5>
+
+            <ul class="flex flex-col gap-5 text-sm text-zinc-400">
+              <li class="flex items-start gap-3">
+                <i class="fa-solid fa-location-dot mt-1 text-orange-400"></i>
+                <span>تهران، خیابان نمونه، پلاک ۱۲</span>
+              </li>
+
+              <li class="flex items-center gap-3">
+                <i class="fa-solid fa-phone text-orange-400"></i>
+                <span dir="ltr">021-12345678</span>
+              </li>
+
+              <li class="flex items-center gap-3">
+                <i class="fa-solid fa-envelope text-orange-400"></i>
+                <span dir="ltr">info@flavoria.com</span>
+              </li>
+
+              <li class="flex items-center gap-3">
+                <i class="fa-regular fa-clock text-orange-400"></i>
+                <span>همه‌روزه، ۱۱ صبح تا ۱۱ شب</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- خبرنامه -->
+          <div>
+            <h5 class="mb-6 font-bold">عضویت در خبرنامه</h5>
+
+            <p class="mb-5 text-sm leading-7 text-zinc-400">
+              برای اطلاع از تخفیف‌ها، پیشنهادهای ویژه و جدیدترین خبرها ایمیل خود
+              را وارد کنید.
+            </p>
+
+            <form
+              class="flex overflow-hidden rounded-lg border border-orange-400/50"
+            >
+              <input
+                type="email"
+                placeholder="ایمیل شما"
+                class="min-w-0 flex-1 bg-white/10 px-3 py-3 text-sm outline-none placeholder:text-zinc-400"
+              />
+
+              <button
+                type="submit"
+                class="bg-orange-400 px-4 text-sm font-bold transition hover:bg-orange-500"
+              >
+                عضویت
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="mt-14 border-t border-orange-400/20 pt-6 text-center text-xs text-zinc-400"
+        >
+          تمامی حقوق این وب‌سایت متعلق به Flavoria است.
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
