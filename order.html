@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <title>منوی غذا | Flavoria</title>
+  </head>
+
+  <body class="min-h-screen bg-[var(--color-bg)] text-white">
+    <!-- header -->
+    <div id="header"></div>
+
+    <main class="app-container py-16 mt-30">
+      <!-- page title -->
+      <div class="mb-16 text-center">
+        <div class="text-orange-400/50 tracking-[10px]">Flavoria Menu</div>
+        <h2 class="text-center text-3xl font-bold">منوی رستوران</h2>
+
+        <p class="mt-5 text-sm leading-8 text-zinc-400">
+          از میان طعم‌های متنوع ما، غذای مورد علاقه‌ات رو انتخاب کن.
+        </p>
+      </div>
+
+      <!-- menu -->
+      <div
+        id="menu-foods"
+        class="grid grid-cols-1 gap-x-16 gap-y-14 lg:grid-cols-2"
+      >
+        <!-- food categories will be rendered here -->
+      </div>
+
+      <!-- bottom order button -->
+      <div class="mt-16 flex justify-center">
+        <a
+          href="/order-detail.html"
+          class="rounded-full bg-orange-400 px-10 py-4 font-bold transition hover:bg-orange-500"
+        >
+          ادامه و مشاهده سفارش
+          <i class="fa-solid fa-arrow-left mr-2"></i>
+        </a>
+      </div>
+    </main>
+    <div id="footer"></div>
+    <script type="module" src="/src/js/layout.js"></script>
+    <script type="module" src="/src/js/order.js"></script>
+  </body>
+</html>

@@ -5,7 +5,7 @@ export const foods = [
     description: "برگری خوشمزه با گوشت تازه، پنیر و سبزیجات تازه",
     price: 450000,
     image: "/src/assets/images/foods/burger.png",
-    category: "Main Course",
+    category: "برگرها",
     isChefSuggestion: true,
   },
   {
@@ -14,7 +14,7 @@ export const foods = [
     description: "تکه‌های مرغ ترد و طلایی با طعمی دلپذیر و ادویه‌های مخصوص",
     price: 320000,
     image: "/src/assets/images/foods/cheeseChickenNaan.png",
-    category: "Pasta",
+    category: "غذاهای سوخاری",
     isChefSuggestion: true,
   },
   {
@@ -23,7 +23,7 @@ export const foods = [
     description: "ترکیبی لذیذ از مرغ مزه‌دار شده، سبزیجات تازه و سس مخصوص",
     price: 280000,
     image: "/src/assets/images/foods/taco.png",
-    category: "Burger",
+    category: "تاکوها",
     isChefSuggestion: true,
   },
     {
@@ -32,7 +32,16 @@ export const foods = [
     description: "ساندویچی خوش‌طعم با کالباس تازه، خیارشور و سس مخصوص",
     price: 280000,
     image: "/src/assets/images/foods/sandwich.png",
-    category: "Burger",
+    category: "ساندویچ‌ها",
+    isChefSuggestion: true,
+  },
+      {
+    id: 5,
+    name: "پاستای مخصوص",
+    description: "پاستای دست ساز با سس مخصوص",
+    price: 280000,
+    image: "/src/assets/images/foods/pasta.jpg",
+    category: "پاستاها",
     isChefSuggestion: true,
   },
 ];

@@ -1,0 +1,63 @@
+<header class="absolute top-0 left-0 z-50 w-full">
+  <nav class="mx-auto flex h-24 max-w-7xl items-right justify-between px-6">
+    <!-- menu -->
+
+    <div class="hidden items-center gap-8 md:flex">
+      <!-- logo -->
+      <a href="/" class="flex items-center">
+        <img src="/src/assets/images/logo/logo.png" class="w-25" alt="logo" />
+      </a>
+
+      <a href="/" class="relative text-sm font-medium text-orange-400">
+        صفحه اصلی
+        <span
+          class="absolute -bottom-3 left-1/2 h-0.5 w-5 -translate-x-1/2 bg-orange-400"
+        ></span>
+      </a>
+
+      <a
+        href="/order.html"
+        class="text-sm font-medium text-[var(--color-light)] transition hover:text-orange-400"
+      >
+        منو
+      </a>
+
+      <a
+        href="#about"
+        class="text-sm font-medium text-[var(--color-light)] transition hover:text-orange-400"
+      >
+        درباره ما
+      </a>
+
+      <a
+        href="#gallery"
+        class="text-sm font-medium text-[var(--color-light)] transition hover:text-orange-400"
+      >
+        تماس با ما
+      </a>
+
+      <a
+        href="/admin.html"
+        class="text-sm font-medium text-[var(--color-light)] transition hover:text-orange-400"
+      >
+        پنل ادمین
+      </a>
+      <a
+        href="/order-detail.html"
+        class="rounded-full bg-orange-400 px-6 py-3 text-xs font-bold text-white shadow-lg transition hover:bg-orange-500"
+      >
+        <i class="fa-solid fa-bag-shopping ml-2"></i>
+        مشاهده سفارش
+        <span id="cart-count">۰</span>
+      </a>
+    </div>
+
+    <!-- mobile button -->
+    <button
+      id="mobile-menu-button"
+      class="text-2xl text-[var(--color-light)] md:hidden"
+    >
+      ☰
+    </button>
+  </nav>
+</header>

@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پنل مدیریت | Flavoria</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body class="min-h-screen bg-[var(--color-bg)] text-white">
+    <div class="flex min-h-screen">
+      <!-- sidebar -->
+      <aside class="w-64 border-l border-white/10 bg-[#181818] p-6">
+        <h1 class="mb-10 text-2xl font-bold text-orange-400">Flavoria</h1>
+        <nav class="flex flex-col gap-3">
+          <a
+            href="#dashboard"
+            class="rounded-lg bg-orange-400/10 px-4 py-3 text-orange-400 sidebar-link active"
+          >
+            <i class="fa-solid fa-chart-line ml-2"></i>
+            داشبورد
+          </a>
+          <a
+            href="#foods"
+            class="rounded-lg px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white sidebar-link"
+          >
+            <i class="fa-solid fa-utensils ml-2"></i>
+            مدیریت غذاها
+          </a>
+          <a
+            href="#orders"
+            class="rounded-lg px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white sidebar-link"
+          >
+            <i class="fa-solid fa-receipt ml-2"></i>
+            سفارش‌ها
+          </a>
+          <a
+            href="#discounts"
+            class="rounded-lg px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white sidebar-link"
+          >
+            <i class="fa-solid fa-ticket ml-2"></i>
+            کدهای تخفیف
+          </a>
+        </nav>
+      </aside>
+      <!-- main content -->
+      <main class="min-w-0 flex-1 p-8">
+        <header class="mb-10 flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-bold">داشبورد مدیریت</h2>
+            <p class="mt-2 text-sm text-gray-400">
+              به پنل مدیریت Flavoria خوش آمدید.
+            </p>
+          </div>
+          <a
+            href="/"
+            class="rounded-lg border border-white/10 px-5 py-3 text-sm hover:bg-white/5"
+          >
+            <i class="fa-solid fa-arrow-right-from-bracket ml-2"></i>
+            بازگشت به سایت
+          </a>
+        </header>
+<section id="dashboard">
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+    <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+      <i class="fa-solid fa-utensils text-2xl text-orange-400"></i>
+      <p class="mt-5 text-sm text-gray-400">تعداد غذاها</p>
+      <h3 id="dashboard-food-count" class="mt-2 text-3xl font-bold">۰</h3>
+    </div>
+
+    <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+      <i class="fa-solid fa-receipt text-2xl text-orange-400"></i>
+      <p class="mt-5 text-sm text-gray-400">تعداد سفارش‌ها</p>
+      <h3 id="dashboard-order-count" class="mt-2 text-3xl font-bold">۰</h3>
+    </div>
+
+    <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+      <i class="fa-solid fa-ticket text-2xl text-orange-400"></i>
+      <p class="mt-5 text-sm text-gray-400">کدهای تخفیف</p>
+      <h3 id="dashboard-discount-count" class="mt-2 text-3xl font-bold">۰</h3>
+    </div>
+  </div>
+</section>
+        <!-- foods management -->
+        <section id="foods" class="mt-12">
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold">مدیریت غذاها</h2>
+            <p class="mt-2 text-sm text-gray-400">
+              غذاهای رستوران رو اضافه کن و اطلاعات غذاهای قبلی رو مدیریت کن.
+            </p>
+          </div>
+          <!-- add food form -->
+          <div
+            class="mb-10 rounded-2xl border border-white/10 bg-[#181818] p-6"
+          >
+            <h3 class="mb-6 text-lg font-bold">افزودن غذای جدید</h3>
+
+            <form id="food-form" class="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div>
+                <label class="mb-2 block text-sm text-gray-400">نام غذا</label>
+                <input
+                  type="text"
+                  id="food-name"
+                  placeholder="مثلاً برگر کلاسیک"
+                  class="w-full rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm outline-none focus:border-orange-400"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm text-gray-400"
+                  >دسته‌بندی</label
+                >
+                <input
+                  type="text"
+                  id="food-category"
+                  placeholder="مثلاً برگرها"
+                  class="w-full rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm outline-none focus:border-orange-400"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm text-gray-400"
+                  >قیمت (تومان)</label
+                >
+                <input
+                  type="number"
+                  id="food-price"
+                  placeholder="مثلاً 450000"
+                  min="0"
+                  class="w-full rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm outline-none focus:border-orange-400"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm text-gray-400"
+                  >مسیر تصویر غذا</label
+                >
+                <input
+                  type="text"
+                  id="food-image"
+                  placeholder="/src/assets/images/foods/burger.png"
+                  class="w-full rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm outline-none focus:border-orange-400"
+                  required
+                />
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="mb-2 block text-sm text-gray-400"
+                  >توضیحات غذا</label
+                >
+                <textarea
+                  id="food-description"
+                  rows="3"
+                  placeholder="توضیح کوتاهی درباره غذا بنویس..."
+                  class="w-full resize-none rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm outline-none focus:border-orange-400"
+                  required
+                ></textarea>
+              </div>
+              <div class="flex flex-wrap gap-3 md:col-span-2">
+                <button
+                  type="submit"
+                  id="food-submit"
+                  class="rounded-lg bg-orange-400 px-8 py-3 text-sm font-bold text-white transition hover:bg-orange-500"
+                >
+                  ثبت غذا
+                </button>
+                <button
+                  type="button"
+                  id="cancel-food-edit"
+                  class="hidden rounded-lg border border-white/10 px-8 py-3 text-sm text-gray-300 hover:bg-white/5"
+                >
+                  انصراف
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- foods list -->
+          <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+            <h3 class="mb-6 text-lg font-bold">لیست غذاها</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[750px] text-right text-sm">
+                <thead>
+                  <tr class="border-b border-white/10 text-gray-400">
+                    <th class="p-4">تصویر</th>
+                    <th class="p-4">نام غذا</th>
+                    <th class="p-4">دسته‌بندی</th>
+                    <th class="p-4">قیمت</th>
+                    <th class="p-4">پیشنهاد سرآشپز</th>
+                    <th class="p-4">عملیات</th>
+                  </tr>
+                </thead>
+
+                <tbody id="food-list">
+                  <!-- food items -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section id="discounts" class="mt-12">
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold">مدیریت کدهای تخفیف</h2>
+            <p class="mt-2 text-sm text-gray-400">
+              کدهای تخفیف جدید ایجاد کن و کدهای قبلی رو مدیریت کن.
+            </p>
+          </div>
+          <!-- add discount form -->
+          <div
+            class="mb-10 rounded-2xl border border-white/10 bg-[#181818] p-6"
+          >
+            <h3 class="mb-6 text-lg font-bold">افزودن کد تخفیف جدید</h3>
+
+            <form
+              id="discount-form"
+              class="grid grid-cols-1 gap-5 md:grid-cols-2"
+            >
+              <div>
+                <label class="mb-2 block text-sm text-gray-400"
+                  >عنوان تخفیف</label
+                >
+                <input
+                  type="text"
+                  id="discount-title"
+                  placeholder="مثلاً تخفیف ویژه اولین خرید"
+                  class="w-full rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm outline-none focus:border-orange-400"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm text-gray-400">کد تخفیف</label>
+                <input
+                  type="text"
+                  id="discount-code"
+                  placeholder="مثلاً WELCOME20"
+                  class="w-full rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm uppercase outline-none focus:border-orange-400"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm text-gray-400"
+                  >درصد تخفیف</label
+                >
+                <input
+                  type="number"
+                  id="discount-percent"
+                  placeholder="مثلاً 20"
+                  min="1"
+                  max="100"
+                  class="w-full rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm outline-none focus:border-orange-400"
+                  required
+                />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm text-gray-400"
+                  >تاریخ انقضا</label
+                >
+                <input
+                  type="date"
+                  id="discount-expiry"
+                  class="w-full rounded-lg border border-white/10 bg-[#101010] px-4 py-3 text-sm outline-none focus:border-orange-400"
+                />
+              </div>
+
+              <div class="md:col-span-2">
+                <div class="flex flex-wrap gap-3 md:col-span-2">
+                  <button
+                    type="submit"
+                    id="discount-submit"
+                    class="rounded-lg bg-orange-400 px-8 py-3 text-sm font-bold text-white transition hover:bg-orange-500"
+                  >
+                    ثبت کد تخفیف
+                  </button>
+
+                  <button
+                    type="button"
+                    id="cancel-edit"
+                    class="hidden rounded-lg border border-white/10 px-8 py-3 text-sm text-gray-300 hover:bg-white/5"
+                  >
+                    انصراف
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- discounts list -->
+          <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+            <h3 class="mb-6 text-lg font-bold">لیست کدهای تخفیف</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[650px] text-right text-sm">
+                <thead>
+                  <tr class="border-b border-white/10 text-gray-400">
+                    <th class="p-4">عنوان</th>
+                    <th class="p-4">کد تخفیف</th>
+                    <th class="p-4">درصد</th>
+                    <th class="p-4">تاریخ انقضا</th>
+                    <th class="p-4">وضعیت</th>
+                    <th class="p-4">عملیات</th>
+                  </tr>
+                </thead>
+
+                <tbody id="discount-list">
+                  <!-- discount items -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- orders management -->
+          <section id="orders" class="my-12">
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold">مدیریت سفارش‌ها</h2>
+              <p class="mt-2 text-sm text-gray-400">
+                سفارش‌های ثبت‌شده توسط مشتریان رو مشاهده و مدیریت کن.
+              </p>
+            </div>
+            <!-- orders list -->
+            <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+              <h3 class="mb-6 text-lg font-bold">لیست سفارش‌ها</h3>
+
+              <div class="overflow-x-auto">
+                <table class="w-full min-w-[850px] text-right text-sm">
+                  <thead>
+                    <tr class="border-b border-white/10 text-gray-400">
+                      <th class="p-4">شماره سفارش</th>
+                      <th class="p-4">اقلام سفارش</th>
+                      <th class="p-4">تعداد</th>
+                      <th class="p-4">مبلغ نهایی</th>
+                      <th class="p-4">تاریخ ثبت</th>
+                      <th class="p-4">وضعیت</th>
+                      <th class="p-4">عملیات</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="order-list">
+                    <!-- orders will be rendered here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/js/admin.js"></script>
+  </body>
+</html>
