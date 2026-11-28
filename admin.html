@@ -10,7 +10,7 @@
   <body class="min-h-screen bg-[var(--color-bg)] text-white">
     <div class="flex min-h-screen">
       <!-- sidebar -->
-      <aside class="w-64 border-l border-white/10 bg-[#181818] p-6">
+      <aside class="w-64 border-l border-white/10 bg-zinc-950 p-6">
         <h1 class="mb-10 text-2xl font-bold text-orange-400">Flavoria</h1>
         <nav class="flex flex-col gap-3">
           <a
@@ -60,27 +60,33 @@
             بازگشت به سایت
           </a>
         </header>
-<section id="dashboard">
-  <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
-    <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
-      <i class="fa-solid fa-utensils text-2xl text-orange-400"></i>
-      <p class="mt-5 text-sm text-gray-400">تعداد غذاها</p>
-      <h3 id="dashboard-food-count" class="mt-2 text-3xl font-bold">۰</h3>
-    </div>
+        <section id="dashboard">
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+            <div class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
+              <i class="fa-solid fa-utensils text-2xl text-orange-400"></i>
+              <p class="mt-5 text-sm text-gray-400">تعداد غذاها</p>
+              <h3 id="dashboard-food-count" class="mt-2 text-3xl font-bold">
+                ۰
+              </h3>
+            </div>
 
-    <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
-      <i class="fa-solid fa-receipt text-2xl text-orange-400"></i>
-      <p class="mt-5 text-sm text-gray-400">تعداد سفارش‌ها</p>
-      <h3 id="dashboard-order-count" class="mt-2 text-3xl font-bold">۰</h3>
-    </div>
+            <div class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
+              <i class="fa-solid fa-receipt text-2xl text-orange-400"></i>
+              <p class="mt-5 text-sm text-gray-400">تعداد سفارش‌ها</p>
+              <h3 id="dashboard-order-count" class="mt-2 text-3xl font-bold">
+                ۰
+              </h3>
+            </div>
 
-    <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
-      <i class="fa-solid fa-ticket text-2xl text-orange-400"></i>
-      <p class="mt-5 text-sm text-gray-400">کدهای تخفیف</p>
-      <h3 id="dashboard-discount-count" class="mt-2 text-3xl font-bold">۰</h3>
-    </div>
-  </div>
-</section>
+            <div class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
+              <i class="fa-solid fa-ticket text-2xl text-orange-400"></i>
+              <p class="mt-5 text-sm text-gray-400">کدهای تخفیف</p>
+              <h3 id="dashboard-discount-count" class="mt-2 text-3xl font-bold">
+                ۰
+              </h3>
+            </div>
+          </div>
+        </section>
         <!-- foods management -->
         <section id="foods" class="mt-12">
           <div class="mb-8">
@@ -91,7 +97,7 @@
           </div>
           <!-- add food form -->
           <div
-            class="mb-10 rounded-2xl border border-white/10 bg-[#181818] p-6"
+            class="mb-10 rounded-2xl border border-white/10 bg-zinc-900 p-6"
           >
             <h3 class="mb-6 text-lg font-bold">افزودن غذای جدید</h3>
 
@@ -178,7 +184,7 @@
             </form>
           </div>
           <!-- foods list -->
-          <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+          <div class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
             <h3 class="mb-6 text-lg font-bold">لیست غذاها</h3>
             <div class="overflow-x-auto">
               <table class="w-full min-w-[750px] text-right text-sm">
@@ -209,7 +215,7 @@
           </div>
           <!-- add discount form -->
           <div
-            class="mb-10 rounded-2xl border border-white/10 bg-[#181818] p-6"
+            class="mb-10 rounded-2xl border border-white/10 bg-zinc-900 p-6"
           >
             <h3 class="mb-6 text-lg font-bold">افزودن کد تخفیف جدید</h3>
 
@@ -289,7 +295,7 @@
             </form>
           </div>
           <!-- discounts list -->
-          <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+          <div class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
             <h3 class="mb-6 text-lg font-bold">لیست کدهای تخفیف</h3>
             <div class="overflow-x-auto">
               <table class="w-full min-w-[650px] text-right text-sm">
@@ -319,7 +325,7 @@
               </p>
             </div>
             <!-- orders list -->
-            <div class="rounded-2xl border border-white/10 bg-[#181818] p-6">
+            <div class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
               <h3 class="mb-6 text-lg font-bold">لیست سفارش‌ها</h3>
 
               <div class="overflow-x-auto">
@@ -340,6 +346,88 @@
                     <!-- orders will be rendered here -->
                   </tbody>
                 </table>
+              </div>
+            </div>
+            <!-- orders financial report -->
+            <div
+              class="mt-8 rounded-2xl border border-white/10 bg-zinc-900 p-6"
+            >
+              <h3 class="mb-6 text-lg font-bold">گزارش مالی سفارش‌ها</h3>
+
+              <!-- date filters -->
+              <div class="mb-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+                <div>
+                  <label class="mb-2 block text-sm text-gray-400">
+                    از تاریخ
+                  </label>
+
+                  <input
+                    type="date"
+                    id="report-start-date"
+                    class="w-full rounded-lg border border-white/10 bg-zinc-950 px-4 py-3 text-sm text-white outline-none focus:border-orange-400"
+                  />
+                </div>
+
+                <div>
+                  <label class="mb-2 block text-sm text-gray-400">
+                    تا تاریخ
+                  </label>
+
+                  <input
+                    type="date"
+                    id="report-end-date"
+                    class="w-full rounded-lg border border-white/10 bg-zinc-950 px-4 py-3 text-sm !text-white outline-none focus:border-orange-400"
+                  />
+                </div>
+              </div>
+
+              <!-- report rows -->
+              <div class="flex flex-col gap-5">
+                <div
+                  class="flex items-center justify-between border-b border-white/10 pb-4"
+                >
+                  <span class="text-sm text-gray-300">در انتظار بررسی</span>
+                  <span id="report-pending" class="font-bold text-orange-400">
+                    ۰ تومان
+                  </span>
+                </div>
+
+                <div
+                  class="flex items-center justify-between border-b border-white/10 pb-4"
+                >
+                  <span class="text-sm text-gray-300">در حال آماده‌سازی</span>
+                  <span id="report-preparing" class="font-bold text-orange-400">
+                    ۰ تومان
+                  </span>
+                </div>
+
+                <div
+                  class="flex items-center justify-between border-b border-white/10 pb-4"
+                >
+                  <span class="text-sm text-gray-300">تکمیل‌شده</span>
+                  <span id="report-completed" class="font-bold text-orange-400">
+                    ۰ تومان
+                  </span>
+                </div>
+
+                <div
+                  class="flex items-center justify-between border-b border-white/10 pb-4"
+                >
+                  <span class="text-sm text-gray-300">لغوشده</span>
+                  <span id="report-cancelled" class="font-bold text-orange-400">
+                    ۰ تومان
+                  </span>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                  <span class="font-bold">مجموع کل</span>
+                  <span
+                    id="report-total"
+                    class="text-lg font-bold text-orange-400"
+                  >
+                    ۰ تومان
+                  </span>
+                </div>
               </div>
             </div>
           </section>

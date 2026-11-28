@@ -493,6 +493,77 @@ const orderStatuses = [
   "لغوشده",
 ];
 
+// محاسبه گزارش مالی سفارش‌ها
+function renderOrderReport() {
+  const startDate = document.querySelector("#report-start-date").value;
+  const endDate = document.querySelector("#report-end-date").value;
+
+  // بررسی معتبر بودن بازه تاریخ
+  if (startDate && endDate && startDate > endDate) {
+    return;
+  }
+
+  // فیلتر سفارش‌ها بر اساس تاریخ
+  const filteredOrders = adminOrders.filter((order) => {
+    const orderDate = new Date(order.createdAt);
+
+    const year = orderDate.getFullYear();
+    const month = String(orderDate.getMonth() + 1).padStart(2, "0");
+    const day = String(orderDate.getDate()).padStart(2, "0");
+
+    const date = `${year}-${month}-${day}`;
+
+    const afterStart = !startDate || date >= startDate;
+    const beforeEnd = !endDate || date <= endDate;
+
+    return afterStart && beforeEnd;
+  });
+
+  // محاسبه مجموع مبلغ هر وضعیت
+  const totals = {
+    "در انتظار بررسی": 0,
+    "در حال آماده‌سازی": 0,
+    "تکمیل‌شده": 0,
+    "لغوشده": 0,
+  };
+
+  filteredOrders.forEach((order) => {
+    if (totals[order.status] !== undefined) {
+      totals[order.status] += Number(order.finalPrice) || 0;
+    }
+  });
+
+  // محاسبه مجموع کل
+  const total = Object.values(totals).reduce(
+    (sum, price) => sum + price,
+    0
+  );
+
+  // نمایش مبالغ
+  document.querySelector("#report-pending").textContent =
+    `${totals["در انتظار بررسی"].toLocaleString("fa-IR")} تومان`;
+
+  document.querySelector("#report-preparing").textContent =
+    `${totals["در حال آماده‌سازی"].toLocaleString("fa-IR")} تومان`;
+
+  document.querySelector("#report-completed").textContent =
+    `${totals["تکمیل‌شده"].toLocaleString("fa-IR")} تومان`;
+
+  document.querySelector("#report-cancelled").textContent =
+    `${totals["لغوشده"].toLocaleString("fa-IR")} تومان`;
+
+  document.querySelector("#report-total").textContent =
+    `${total.toLocaleString("fa-IR")} تومان`;
+}
+// به‌روزرسانی گزارش با تغییر تاریخ
+document
+  .querySelector("#report-start-date")
+  .addEventListener("change", renderOrderReport);
+
+document
+  .querySelector("#report-end-date")
+  .addEventListener("change", renderOrderReport);
+
 // نمایش سفارش‌ها
 function renderOrders() {
   if (adminOrders.length === 0) {
@@ -585,9 +656,11 @@ orderList.addEventListener("change", (event) => {
     order.id === orderId ? { ...order, status: select.value } : order,
   );
 
-  localStorage.setItem("orders", JSON.stringify(adminOrders));
+localStorage.setItem("orders", JSON.stringify(adminOrders));
 
-  alert("وضعیت سفارش تغییر کرد.");
+renderOrderReport();
+
+alert("وضعیت سفارش تغییر کرد.");
 });
 
 // مشاهده جزئیات سفارش
@@ -628,6 +701,7 @@ ${itemsDetails}
 
 // نمایش اولیه سفارش‌ها
 renderOrders();
+renderOrderReport();
 
 // مدیریت منوی سایدبار
 const sidebarLinks = document.querySelectorAll(".sidebar-link");
