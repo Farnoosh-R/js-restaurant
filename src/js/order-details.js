@@ -1,6 +1,7 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const orderItemsContainer = document.querySelector("#order-items");
+const TAX_PERCENT = 10;
 
 let orderItems = JSON.parse(localStorage.getItem("orderItems")) || [];
 let appliedDiscount = null;
@@ -8,6 +9,16 @@ let appliedDiscount = null;
 // ذخیره سفارش‌های موقت
 function saveOrder() {
   localStorage.setItem("orderItems", JSON.stringify(orderItems));
+}
+// به‌روزرسانی تعداد سفارش در هدر
+function updateCartCount() {
+  const cartCount = document.querySelector("#cart-count");
+
+  if (!cartCount) return;
+
+  const count = orderItems.reduce((total, item) => total + item.quantity, 0);
+
+  cartCount.textContent = count.toLocaleString("fa-IR");
 }
 
 // دریافت کدهای تخفیف
@@ -55,7 +66,7 @@ function applyDiscount() {
   const discountCodes = getDiscountCodes();
 
   const discount = discountCodes.find(
-    (item) => item.code.toUpperCase() === code
+    (item) => item.code.toUpperCase() === code,
   );
 
   if (!discount) {
@@ -83,7 +94,7 @@ function applyDiscount() {
 
   showDiscountMessage(
     `${discount.percent}٪ تخفیف با موفقیت اعمال شد.`,
-    "success"
+    "success",
   );
 
   renderOrderItems();
@@ -91,6 +102,7 @@ function applyDiscount() {
 
 // نمایش سفارش‌ها
 function renderOrderItems() {
+  updateCartCount();
   if (orderItems.length === 0) {
     appliedDiscount = null;
 
@@ -117,6 +129,7 @@ function renderOrderItems() {
     document.querySelector("#total-price").textContent = "۰ تومان";
     document.querySelector("#discount-amount").textContent = "۰ تومان";
     document.querySelector("#final-price").textContent = "۰ تومان";
+    document.querySelector("#tax-amount").textContent = "۰ تومان";
 
     return;
   }
@@ -177,29 +190,34 @@ function renderOrderItems() {
           </button>
 
         </div>
-      `
+      `,
     )
     .join("");
 
   // محاسبه تعداد و مبلغ کل
   const totalItems = orderItems.reduce(
     (total, item) => total + item.quantity,
-    0
+    0,
   );
 
   const totalPrice = orderItems.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   // محاسبه تخفیف
-  const discountPercent = appliedDiscount
-    ? appliedDiscount.percent
-    : 0;
+  const discountPercent = appliedDiscount ? appliedDiscount.percent : 0;
 
-  const discountAmount = totalPrice * discountPercent / 100;
+  const discountAmount = (totalPrice * discountPercent) / 100;
 
-  const finalPrice = totalPrice - discountAmount;
+  // مبلغ بعد از کسر تخفیف
+  const priceAfterDiscount = totalPrice - discountAmount;
+
+  // محاسبه مالیات ۱۰ درصد
+  const taxAmount = (priceAfterDiscount * TAX_PERCENT) / 100;
+
+  // مبلغ نهایی با احتساب مالیات
+  const finalPrice = priceAfterDiscount + taxAmount;
 
   // نمایش مبالغ
   document.querySelector("#total-items").textContent =
@@ -213,13 +231,13 @@ function renderOrderItems() {
 
   document.querySelector("#final-price").textContent =
     `${finalPrice.toLocaleString("fa-IR")} تومان`;
+  document.querySelector("#tax-amount").textContent =
+    `${taxAmount.toLocaleString("fa-IR")} تومان`;
 }
 
 // تغییر تعداد غذا
 function updateQuantity(foodId, action) {
-  const item = orderItems.find(
-    (item) => item.id === foodId
-  );
+  const item = orderItems.find((item) => item.id === foodId);
 
   if (!item) return;
 
@@ -231,9 +249,7 @@ function updateQuantity(foodId, action) {
     item.quantity--;
 
     if (item.quantity <= 0) {
-      orderItems = orderItems.filter(
-        (item) => item.id !== foodId
-      );
+      orderItems = orderItems.filter((item) => item.id !== foodId);
     }
   }
 
@@ -243,9 +259,7 @@ function updateQuantity(foodId, action) {
 
 // حذف غذا
 function removeItem(foodId) {
-  orderItems = orderItems.filter(
-    (item) => item.id !== foodId
-  );
+  orderItems = orderItems.filter((item) => item.id !== foodId);
 
   saveOrder();
   renderOrderItems();
@@ -274,7 +288,7 @@ document
   .querySelector("#apply-discount")
   .addEventListener("click", applyDiscount);
 
-  // ثبت سفارش نهایی
+// ثبت سفارش نهایی
 function submitOrder() {
   if (orderItems.length === 0) {
     alert("سبد سفارش شما خالی است.");
@@ -284,23 +298,28 @@ function submitOrder() {
   // محاسبه تعداد غذاها
   const totalItems = orderItems.reduce(
     (total, item) => total + item.quantity,
-    0
+    0,
   );
 
   // محاسبه مبلغ کل
   const totalPrice = orderItems.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   // محاسبه تخفیف
-  const discountPercent = appliedDiscount
-    ? appliedDiscount.percent
-    : 0;
+  const discountPercent = appliedDiscount ? appliedDiscount.percent : 0;
 
-  const discountAmount = totalPrice * discountPercent / 100;
+  const discountAmount = (totalPrice * discountPercent) / 100;
 
-  const finalPrice = totalPrice - discountAmount;
+  // مبلغ بعد از تخفیف
+  const priceAfterDiscount = totalPrice - discountAmount;
+
+  // مالیات
+  const taxAmount = (priceAfterDiscount * TAX_PERCENT) / 100;
+
+  // مبلغ نهایی با مالیات
+  const finalPrice = priceAfterDiscount + taxAmount;
 
   // دریافت سفارش‌های قبلی
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -317,6 +336,8 @@ function submitOrder() {
     finalPrice,
     createdAt: new Date().toISOString(),
     status: "در انتظار بررسی",
+    taxPercent: TAX_PERCENT,
+    taxAmount,
   };
 
   // ذخیره سفارش

@@ -1,5 +1,5 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { foods } from "./data/foods.js";
+import { foods as initialFoods } from "./data/foods.js";
 
 /********************TASKS*******************/
 // namayeshe ghaza ha bar asase category
@@ -10,6 +10,7 @@ import { foods } from "./data/foods.js";
 
 // bakhshi az safe ke id menu-foods ro dashte bashe ro peida , entekhab mikone
 const menuFoods = document.querySelector("#menu-foods");
+let foods = JSON.parse(localStorage.getItem("foods")) || initialFoods;
 
 // daryafte sefareshe ghabli az localstorage va tabdilesh az string b js va age ls vojud nadasht ye array khali besaz
 let orderItems = JSON.parse(localStorage.getItem("orderItems")) || [];
